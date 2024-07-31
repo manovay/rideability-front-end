@@ -1,14 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>My Web Application</title>
+  <!-- Sets up strucutre/stylesheet -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motorcycle Rideability Index</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<header>
-<h1>Welcome to My Web Application</h1>
-</header>
-<p>This is a simple test HTML file to get
-you started with your project.</p>
-<button id="testButton">Clicker Me</button>
+  <!-- Nav bar on top of screen and what not-->
+  <header class="navbar">
+    <a href="#" onclick="showHome()">Home</a>
+    <a href="#" onclick="showRecents()">Recents</a>
+    <a href="#" onclick="showAbout()">About</a>
+  </header>
+
+  <main>
+    <!--Home View-->
+    <div id="home-view" class="view active">
+      <h1>Motorcycle Rideability Index</h1>
+      <p>Enter your zip code to get a rideability score for motorcycle riding.</p>
+
+      <!-- Search Box-->
+      <div class="search-container">
+        <input type="text" id="zip-input" class="search-bar" placeholder="Enter your zip code">
+        <button id="get-score-button">Get Score</button>
+        <p id="error-message" class="error-message"></p>
+      </div>
+    </div>
+
+    <!-- Recents Vie-->
+    <div id="recents-view" class="view" style="display: none;">
+      <!-- Will eventually show recent searches once back end is set up -->
+      <h2>Recent Searches</h2>
+      <p>Placeholder for recent searches</p>
+    </div>
+
+    <!--Results View -->
+    <div id="results-view" class="view" style="display: none;">
+      <h2 id="results-location">Location Name</h2>
+
+      <!-- all the data taken from API -->
+      <div class="weather-data">
+        <p><strong>Temperature:</strong> <span id="temperature"></span> °C</p>
+        <p><strong>Humidity:</strong> <span id="humidity"></span> %</p>
+        <p><strong>Weather:</strong> <span id="weather-description"></span></p>
+        <p><strong>Precipitation:</strong> <span id="precipitation"></span> mm</p>
+        <p><strong>Visibility:</strong> <span id="visibility"></span> km</p>
+        <p><strong>Wind Speed:</strong> <span id="wind"></span> m/s</p>
+        <p><strong>Rideability Score:</strong> <span id="rideability-score"></span></p>
+      </div>
+      <!-- to go back to main page, get another one -->
+      <button class="back-button" onclick="showHome()">Check Another Location</button>
+    </div>
+
+    <!-- About View-->
+    <div id="about-view" class="view" style="display: none;">
+      <h1>About</h1>
+      <p>This application fetches weather data and calculates a rideability score based on current conditions. It is designed to help motorcyclists decide whether it is safe to ride.</p>
+      <h2>Rideability Score Calculation Logic</h2>
+      <p>The rideability score is calculated based on the following criteria:</p>
+      <ul>
+        <li>Precipitation: Subtracts 3 points, Snow subtracts 8 points</li>
+        <li>Visibility: Less than 2 km subtracts 5 points, between 2 km and 5 km subtracts 2 points, and between 5 km and 10 km subtracts 1 point</li>
+        <li>Temperature: Below 0°C subtracts 2 points, above 30°C subtracts 2 points, between 5°C and 25°C subtracts 1 point</li>
+        <li>Wind: Above 5 m/s subtracts 1 point, above 10 m/s subtracts 2 points</li>
+      </ul>
+  </main>
+  <script src="app.js"></script>
 </body>
 </html>
