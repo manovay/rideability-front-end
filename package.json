@@ -1,10 +1,10 @@
 {
-  "name": "Manovay Sharma",
+  "name": "manovay-sharma",
   "version": "1.0.0",
-  "description": "",
+  "description": "Motorcycle Rideability Index project",
   "main": "index.js",
   "type": "module",
-  "license": "AGPL-version-3.0",
+  "license": "AGPL-3.0",
   "private": false,
   "engines": {
     "node": ">= 14.0.0",
@@ -18,7 +18,7 @@
   "bugs": "",
   "keywords": [],
   "author": {
-    "name": "",
+    "name": "Manovay Sharma",
     "email": "",
     "url": ""
   },
