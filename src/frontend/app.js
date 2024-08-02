@@ -21,7 +21,7 @@ document.getElementById('get-score-button').addEventListener('click', async () =
     return;
   }
 
-  //errorMessage.textContent = '';
+  errorMessage.textContent = '';
 
   // this part should lowkey be in the back end sooner than later
 
@@ -61,6 +61,26 @@ document.getElementById('get-score-button').addEventListener('click', async () =
 
     // Calculate rideability score
     const rideabilityScore = calculateRideabilityScore(temperature, visibility, weatherData.current.snow, precipitation, wind);
+
+    //Store data locally 
+    const recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+    const searchEntry = {
+      zip,
+      location: name,
+      temperature,
+      humidity,
+      weatherDescription,
+      precipitation,
+      visibility,
+      wind,
+      rideabilityScore
+    };
+    recentSearches.push(searchEntry);
+    localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+
+    
+
+    console.log('Recent Searches:', recentSearches);
 
     // Update the page 
     resultsLocation.textContent = name || 'unknown';
@@ -125,7 +145,6 @@ function showHome() {
   document.getElementById('recents-view').style.display = 'none';
   document.getElementById('results-view').style.display = 'none';
   document.getElementById('about-view').style.display = 'none';
-  document.getElementById('contact-view').style.display = 'none';
 }
 
 function showRecents() {
@@ -133,7 +152,6 @@ function showRecents() {
   document.getElementById('recents-view').style.display = 'block';
   document.getElementById('results-view').style.display = 'none';
   document.getElementById('about-view').style.display = 'none';
-  document.getElementById('contact-view').style.display = 'none';
 }
 
 function showResults() {
@@ -141,7 +159,6 @@ function showResults() {
   document.getElementById('recents-view').style.display = 'none';
   document.getElementById('results-view').style.display = 'block';
   document.getElementById('about-view').style.display = 'none';
-  document.getElementById('contact-view').style.display = 'none';
 }
 
 function showAbout() {
@@ -149,13 +166,7 @@ function showAbout() {
   document.getElementById('recents-view').style.display = 'none';
   document.getElementById('results-view').style.display = 'none';
   document.getElementById('about-view').style.display = 'block';
-  document.getElementById('contact-view').style.display = 'none';
 }
 
-function showContact() {
-  document.getElementById('home-view').style.display = 'none';
-  document.getElementById('recents-view').style.display = 'none';
-  document.getElementById('results-view').style.display = 'none';
-  document.getElementById('about-view').style.display = 'none';
-  document.getElementById('contact-view').style.display = 'block';
-}
+
+
